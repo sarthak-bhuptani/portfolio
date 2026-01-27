@@ -13,7 +13,6 @@ import CustomCursor from './components/CustomCursor';
 import ScrollProgress from './components/ScrollProgress';
 import Preloader from './components/Preloader';
 import Footer from './components/Footer';
-import FloatingShapes from './components/FloatingShapes';
 import CommandPalette from './components/CommandPalette';
 
 function App() {
@@ -24,7 +23,6 @@ function App() {
 
         {/* Global Background */}
         <AnimatedBackground />
-        <FloatingShapes />
         <CustomCursor />
         <CommandPalette />
         <ScrollProgress />

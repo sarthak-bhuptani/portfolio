@@ -7,7 +7,7 @@ import profileImg from '../assets/profile.jpg';
 
 function Hero() {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden py-24 md:py-0">
+    <section id="hero" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-24 md:py-0">
 
       {/* Background Ambience */}
       <div className="absolute top-0 right-0 w-[200px] md:w-[500px] h-[200px] md:h-[500px] bg-cyan-500/10 rounded-full blur-[80px] md:blur-[120px] pointer-events-none" />
@@ -32,8 +32,8 @@ function Hero() {
             Available for New Projects
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-slate-900 dark:text-white mb-4 md:mb-6 leading-tight">
-            I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-purple-600 dark:from-cyan-400 dark:to-purple-600">Sarthak.</span>
+          <h1 className="text-2xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-4 md:mb-6 leading-tight">
+            I'm <span className="text-5xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-purple-600 dark:from-cyan-400 dark:to-purple-600">Sarthak Bhuptani.</span>
             <br />
             I build <span className="text-slate-500 dark:text-slate-500">digital<br className="hidden md:block" /> experiences.</span>
           </h1>
