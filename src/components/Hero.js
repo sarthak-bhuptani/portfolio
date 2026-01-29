@@ -90,7 +90,7 @@ function Hero() {
           {/* Abstract Background for Image */}
           <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500 to-purple-500 rounded-[2rem] rotate-6 opacity-20 scale-105 blur-lg"></div>
 
-          <div className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 rounded-[2rem] overflow-hidden border-2 border-slate-200 dark:border-white/10 shadow-2xl bg-white dark:bg-slate-900 group">
+          <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-[450px] md:h-[450px] rounded-[2rem] overflow-hidden border-2 border-slate-200 dark:border-white/10 shadow-2xl bg-white dark:bg-slate-900 group">
             <img
               src={profileImg}
               alt="Sarthak Bhuptani"
