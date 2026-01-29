@@ -7,7 +7,7 @@ import profileImg from '../assets/profile.jpg';
 
 function Hero() {
   return (
-    <section id="hero" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-24 md:py-0">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-16 md:pt-25 md:pb-20">
 
       {/* Background Ambience */}
       <div className="absolute top-0 right-0 w-[200px] md:w-[500px] h-[200px] md:h-[500px] bg-cyan-500/10 rounded-full blur-[80px] md:blur-[120px] pointer-events-none" />
@@ -87,10 +87,7 @@ function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="hidden md:flex order-1 md:order-2 justify-center relative mt-8 md:mt-0"
         >
-          {/* Abstract Background for Image */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500 to-purple-500 rounded-[2rem] rotate-6 opacity-20 scale-105 blur-lg"></div>
-
-          <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-[450px] md:h-[450px] rounded-[2rem] overflow-hidden border-2 border-slate-200 dark:border-white/10 shadow-2xl bg-white dark:bg-slate-900 group">
+          <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96 lg:w-[420px] lg:h-[420px] rounded-[2rem] overflow-hidden border-2 border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900 group">
             <img
               src={profileImg}
               alt="Sarthak Bhuptani"
