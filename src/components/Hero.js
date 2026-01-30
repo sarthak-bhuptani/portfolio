@@ -61,7 +61,7 @@ function Hero() {
 
           <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center md:justify-start w-full md:w-auto">
             <motion.a
-              href="/resume.pdf"
+              href="Bhuptani_Sarthak.pdf"
               target="_blank"
               download="Sarthak_Bhuptani_Resume.pdf"
               whileHover={{ scale: 1.05 }}
