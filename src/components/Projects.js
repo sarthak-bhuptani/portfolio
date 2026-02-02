@@ -21,7 +21,7 @@ const projects = [
     icon: '📈',
     img: stockImg,
     demo: '#',
-    repo: '#',
+    repo: 'https://github.com/sarthak-bhuptani',
     features: ['Real-time Data Fetching', 'LSTM/Linear Regression', 'Interactive Charts', 'Market Trend Analysis']
   },
   {
@@ -33,7 +33,7 @@ const projects = [
     icon: '🎤',
     img: voiceImg,
     demo: '#',
-    repo: '#',
+    repo: 'https://github.com/sarthak-bhuptani/Voice-Assistance',
     features: ['Voice Command Recognition', 'Automated Web Search', 'System Control', 'Natural Language Processing']
   },
   {
@@ -45,7 +45,7 @@ const projects = [
     icon: '📰',
     img: newsImg,
     demo: '#',
-    repo: '#',
+    repo: 'https://github.com/sarthak-bhuptani/News-App--HelloNews',
     features: ['Live News Feed', 'Category Filtering', 'Search Functionality', 'Responsive Grid Layout']
   },
   {
@@ -57,7 +57,7 @@ const projects = [
     icon: '📚',
     img: libraryImg,
     demo: '#',
-    repo: '#',
+    repo: 'https://github.com/sarthak-bhuptani/Library-Managment-System',
     features: ['Role-based Login', 'Book CRUD Operations', 'Issue/Return Tracking', 'Fine Calculation Logic']
   },
   {
@@ -69,7 +69,7 @@ const projects = [
     icon: '🧩',
     img: quizeImg,
     demo: '#',
-    repo: 'https://github.com/Sarthakbhuptani123',
+    repo: 'https://github.com/sarthak-bhuptani',
     features: ['Teacher/Student Auth', 'Timed Exams', 'Auto-grading', 'CSV Report Export']
   }
 ];
