@@ -68,7 +68,7 @@ const projects = [
     gradient: 'from-violet-400 via-fuchsia-500 to-pink-600',
     icon: '🧩',
     img: quizeImg,
-    demo: '#',
+    demo: 'https://quizeemaster.netlify.app/',
     repo: 'https://github.com/sarthak-bhuptani',
     features: ['Teacher/Student Auth', 'Timed Exams', 'Auto-grading', 'CSV Report Export']
   }
