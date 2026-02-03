@@ -1,7 +1,7 @@
 // src/components/Projects.js
 import React, { useState, useRef, useMemo } from 'react';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, LayoutGroup } from 'framer-motion';
-import { ExternalLink, Github, X, Layers, Code, Sparkles, FolderOpen } from 'lucide-react';
+import { ExternalLink, Github, X, Layers, Code, Sparkles, FolderOpen, CheckCircle2, Zap } from 'lucide-react';
 
 // Import images
 import stockImg from '../assets/stock.png';
@@ -62,15 +62,20 @@ const projects = [
   },
   {
     title: 'Quize Platform',
-    description: 'Robust online examination system with teacher dashboards, timed quizzes, and automated grading.',
-    tech: ['Django', 'Python', 'SQLite'],
+    description: 'A high-fidelity, full-stack examination ecosystem engineered for modern education. This platform leverages the MERN stack to deliver a seamless, low-latency experience for both educators and students, featuring AI-powered quiz generation and robust anti-cheating mechanisms.',
+    tech: ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'Gemini AI', 'Netlify'],
     category: 'Full Stack',
     gradient: 'from-violet-400 via-fuchsia-500 to-pink-600',
     icon: '🧩',
     img: quizeImg,
     demo: 'https://quizeemaster.netlify.app/',
     repo: 'https://github.com/sarthak-bhuptani',
-    features: ['Teacher/Student Auth', 'Timed Exams', 'Auto-grading', 'CSV Report Export']
+    features: [
+      'AI Quiz Architect: Generate complete assessments using Gemini AI.',
+      'Proctoring Engine: Integrated security logic to detect tab-switching.',
+      'Dynamic Dashboards: Real-time tracking with interactive charts.',
+      'Automated Evaluation: Instant grading with downloadable PDF reports.'
+    ]
   }
 ];
 
@@ -259,11 +264,15 @@ const ProjectModal = ({ project, onClose }) => {
                 <h4 className="flex items-center gap-2 text-slate-900 dark:text-white font-bold mb-3">
                   <Layers size={18} className="text-cyan-600 dark:text-cyan-400" /> Key Features
                 </h4>
-                <ul className="grid grid-cols-1 gap-2">
+                <ul className="grid grid-cols-1 gap-3">
                   {project.features.map((f, i) => (
-                    <li key={i} className="flex items-center gap-3 text-slate-600 dark:text-slate-400 text-sm">
-                      <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${project.gradient}`}></span>
-                      {f}
+                    <li key={i} className="flex items-start gap-3 text-slate-600 dark:text-slate-400 text-sm group/feat">
+                      <div className={`mt-1 flex-shrink-0 p-0.5 rounded-full bg-gradient-to-br ${project.gradient}`}>
+                        <div className="bg-white dark:bg-slate-900 rounded-full p-0.5">
+                          <CheckCircle2 size={12} className="text-cyan-600 dark:text-cyan-400" />
+                        </div>
+                      </div>
+                      <span className="group-hover/feat:text-slate-900 dark:group-hover/feat:text-white transition-colors">{f}</span>
                     </li>
                   ))}
                 </ul>
@@ -275,7 +284,7 @@ const ProjectModal = ({ project, onClose }) => {
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((t) => (
-                    <span key={t} className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-white/10 transition-colors cursor-default">
+                    <span key={t} className="px-3 py-1.5 rounded-lg text-xs font-semibold backdrop-blur-md bg-white/20 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:bg-white/30 dark:hover:bg-white/10 transition-all cursor-default shadow-sm mb-1">
                       {t}
                     </span>
                   ))}
