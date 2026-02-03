@@ -21,7 +21,7 @@ const projects = [
     icon: '📈',
     img: stockImg,
     demo: '#',
-    repo: 'https://github.com/sarthak-bhuptani',
+    repo: 'https://github.com/sarthak-bhuptani?tab=repositories',
     features: ['Real-time Data Fetching', 'LSTM/Linear Regression', 'Interactive Charts', 'Market Trend Analysis']
   },
   {
