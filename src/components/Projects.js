@@ -69,7 +69,7 @@ const projects = [
     icon: '🧩',
     img: quizeImg,
     demo: 'https://quizeemaster.netlify.app/',
-    repo: 'https://github.com/sarthak-bhuptani',
+    repo: 'https://github.com/sarthak-bhuptani/QuizeMaster',
     features: [
       'AI Quiz Architect: Generate complete assessments using Gemini AI.',
       'Proctoring Engine: Integrated security logic to detect tab-switching.',
@@ -226,85 +226,98 @@ const ProjectModal = ({ project, onClose }) => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 100 }}
           transition={{ type: "spring", damping: 20, stiffness: 100 }}
-          className="relative w-full max-w-5xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-3xl overflow-hidden shadow-2xl z-10 grid grid-cols-1 md:grid-cols-2 max-h-[90vh] md:max-h-[800px] overflow-y-auto"
+          className="relative w-full max-w-6xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-3xl overflow-hidden shadow-2xl z-10 flex flex-col md:flex-row max-h-[90vh]"
         >
           {/* Left Side: Visuals */}
-          <div className="relative h-64 md:h-auto overflow-hidden">
+          <div className="relative w-full md:w-1/2 h-64 md:h-auto overflow-hidden bg-slate-50 dark:bg-slate-950 flex-shrink-0">
             <img
               src={project.img}
               alt={project.title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-top"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-slate-900 via-transparent to-transparent opacity-90 md:opacity-60" />
-
-            <div className="absolute bottom-0 left-0 p-8 w-full">
-              <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-2 drop-shadow-lg">{project.title}</h2>
-              <div className={`h-1.5 w-24 rounded-full bg-gradient-to-r ${project.gradient}`}></div>
-            </div>
+            {/* Subtle Gradient Overlay for Mobile Bottom / Desktop Side */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-slate-950/20" />
           </div>
 
-          {/* Right Side: Info */}
-          <div className="p-8 md:p-10 flex flex-col bg-slate-50 dark:bg-slate-900/50">
-            <div className="flex justify-between items-start mb-6">
-              <div className="flex items-center gap-2 text-yellow-400">
-                <Sparkles size={20} className="animate-pulse" />
-                <span className="text-sm font-bold uppercase tracking-widest text-slate-400">Featured Project</span>
+          {/* Right Side: Info (Scrollable) */}
+          <div className="w-full md:w-1/2 flex flex-col overflow-hidden bg-white dark:bg-slate-900">
+            {/* Sticky Header in side panel */}
+            <div className="p-6 md:p-8 flex justify-between items-start border-b border-slate-100 dark:border-white/5 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md z-20">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-2">{project.title}</h2>
+                <div className={`h-1.5 w-20 rounded-full bg-gradient-to-r ${project.gradient}`}></div>
               </div>
-              <button onClick={onClose} className="p-2 bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 rounded-full hover:bg-red-500/80 hover:text-white hover:border-red-500 transition-all text-slate-500 dark:text-slate-400">
-                <X size={20} />
+              <button
+                onClick={onClose}
+                className="p-2.5 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-full hover:bg-red-500 hover:text-white transition-all text-slate-500 dark:text-slate-400 group"
+              >
+                <X size={20} className="group-hover:rotate-90 transition-transform duration-300" />
               </button>
             </div>
 
-            <p className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed mb-8">
-              {project.description}
-            </p>
-
-            <div className="space-y-6 mb-8">
-              <div>
-                <h4 className="flex items-center gap-2 text-slate-900 dark:text-white font-bold mb-3">
-                  <Layers size={18} className="text-cyan-600 dark:text-cyan-400" /> Key Features
-                </h4>
-                <ul className="grid grid-cols-1 gap-3">
-                  {project.features.map((f, i) => (
-                    <li key={i} className="flex items-start gap-3 text-slate-600 dark:text-slate-400 text-sm group/feat">
-                      <div className={`mt-1 flex-shrink-0 p-0.5 rounded-full bg-gradient-to-br ${project.gradient}`}>
-                        <div className="bg-white dark:bg-slate-900 rounded-full p-0.5">
-                          <CheckCircle2 size={12} className="text-cyan-600 dark:text-cyan-400" />
-                        </div>
-                      </div>
-                      <span className="group-hover/feat:text-slate-900 dark:group-hover/feat:text-white transition-colors">{f}</span>
-                    </li>
-                  ))}
-                </ul>
+            {/* Scrollable Content */}
+            <div className="p-8 md:p-10 overflow-y-auto custom-scrollbar flex-grow">
+              <div className="flex items-center gap-2 text-yellow-500 mb-6">
+                <Sparkles size={18} className="animate-pulse" />
+                <span className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Featured Project</span>
               </div>
 
-              <div>
-                <h4 className="flex items-center gap-2 text-slate-900 dark:text-white font-bold mb-3">
-                  <Code size={18} className="text-purple-600 dark:text-purple-400" /> Tech Stack
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((t) => (
-                    <span key={t} className="px-3 py-1.5 rounded-lg text-xs font-semibold backdrop-blur-md bg-white/20 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:bg-white/30 dark:hover:bg-white/10 transition-all cursor-default shadow-sm mb-1">
-                      {t}
-                    </span>
-                  ))}
+              <p className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed mb-10">
+                {project.description}
+              </p>
+
+              <div className="space-y-8 mb-10">
+                <div>
+                  <h4 className="flex items-center gap-2 text-slate-900 dark:text-white font-bold mb-4">
+                    <Layers size={18} className="text-cyan-600 dark:text-cyan-400" /> Key Features
+                  </h4>
+                  <ul className="grid grid-cols-1 gap-4">
+                    {project.features.map((f, i) => (
+                      <li key={i} className="flex items-start gap-3 text-slate-600 dark:text-slate-400 text-[15px] group/feat">
+                        <div className={`mt-0.5 flex-shrink-0 p-0.5 rounded-full bg-gradient-to-br ${project.gradient}`}>
+                          <div className="bg-white dark:bg-slate-900 rounded-full p-0.5">
+                            <CheckCircle2 size={12} className="text-cyan-600 dark:text-cyan-400" />
+                          </div>
+                        </div>
+                        <span className="group-hover:text-slate-900 dark:group-hover:text-white transition-colors leading-snug">{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="flex items-center gap-2 text-slate-900 dark:text-white font-bold mb-4">
+                    <Code size={18} className="text-purple-600 dark:text-purple-400" /> Tech Stack
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.map((t) => (
+                      <span key={t} className="px-3.5 py-1.5 rounded-xl text-xs font-bold backdrop-blur-md bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:bg-white dark:hover:bg-white/10 transition-all cursor-default shadow-sm border-b-2 border-r-2 border-slate-300/50 dark:border-white/5">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="mt-auto flex gap-4 pt-6 border-t border-white/5">
-              <a
-                href={project.demo}
-                className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-r ${project.gradient} text-white font-bold shadow-lg hover:shadow-cyan-500/25 hover:-translate-y-1 transition-all`}
-              >
-                <ExternalLink size={18} /> Live Demo
-              </a>
-              <a
-                href={project.repo}
-                className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white font-medium hover:bg-slate-300 dark:hover:bg-slate-700 transition-all border border-slate-300 dark:border-white/5"
-              >
-                <Github size={18} /> Code
-              </a>
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 pt-8 border-t border-slate-100 dark:border-white/5">
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`flex-1 flex items-center justify-center gap-2 py-4 rounded-2xl bg-gradient-to-r ${project.gradient} text-white font-bold shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 hover:-translate-y-1 transition-all group`}
+                >
+                  <ExternalLink size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" /> Live Demo
+                </a>
+                <a
+                  href={project.repo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 py-4 rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-900 dark:text-white font-bold hover:bg-slate-200 dark:hover:bg-white/10 transition-all border border-slate-200 dark:border-white/10"
+                >
+                  <Github size={18} /> Source Code
+                </a>
+              </div>
             </div>
           </div>
         </motion.div>
