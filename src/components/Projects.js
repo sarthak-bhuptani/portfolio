@@ -9,6 +9,7 @@ import voiceImg from '../assets/voice.png';
 import libraryImg from '../assets/library.png';
 import newsImg from '../assets/news.png';
 import quizeImg from '../assets/quiz.png';
+import mindcareImg from '../assets/mindcare.png';
 
 // --- DATA ---
 const projects = [
@@ -75,6 +76,23 @@ const projects = [
       'Proctoring Engine: Integrated security logic to detect tab-switching.',
       'Dynamic Dashboards: Real-time tracking with interactive charts.',
       'Automated Evaluation: Instant grading with downloadable PDF reports.'
+    ]
+  },
+  {
+    title: 'MindCare',
+    description: 'A modern mental wellness web application offering AI-driven support, therapeutic resources, and mental health tracking.',
+    tech: ['React.js', 'Node.js', 'MongoDB', 'Tailwind', 'Groq AI'],
+    category: 'Full Stack',
+    gradient: 'from-blue-400 via-indigo-500 to-purple-600',
+    icon: '🧠',
+    img: mindcareImg,
+    demo: 'https://minddcare.netlify.app/',
+    repo: 'https://github.com/sarthak-bhuptani/MindCare',
+    features: [
+      'AI-Powered Assistant: Intelligent chatbot for mental wellness support.',
+      'Progress Tracking: Check-ins and journaling for personal growth.',
+      'Modern UI/UX: Engaging components powered by Tailwind and Shadcn.',
+      'Responsive Design: Optimized for seamless experience across all devices.'
     ]
   }
 ];

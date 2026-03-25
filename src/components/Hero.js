@@ -72,7 +72,7 @@ function Hero() {
             </motion.a>
 
             <div className="flex gap-6 items-center justify-center px-4 mt-2 sm:mt-0">
-              <SocialIcon href="https://github.com/Sarthakbhuptani123" icon={<FiGithub />} delay={0} />
+              <SocialIcon href="https://github.com/sarthak-bhuptani" icon={<FiGithub />} delay={0} />
               <SocialIcon href="https://www.linkedin.com/in/sarthak-bhuptani-8a232a247/" icon={<FiLinkedin />} delay={0.1} />
               <SocialIcon href="#contact" icon={<FiMail />} delay={0.2} />
             </div>
