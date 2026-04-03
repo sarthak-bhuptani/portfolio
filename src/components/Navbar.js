@@ -75,8 +75,8 @@ const Navbar = () => {
               ))}
             </ul>
 
-            {/* Right Side: Action */}
-            <div className="flex items-center gap-3">
+            {/* Right Side: Toggle Menu (Mobile Only) */}
+            <div className="flex items-center gap-3 md:hidden">
                <motion.button
                   whileTap={{ scale: 0.9 }}
                   onClick={() => setIsMobileMenuOpen(true)}
