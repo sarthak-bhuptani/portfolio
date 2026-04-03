@@ -1,145 +1,129 @@
-// src/components/Hero.js
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Typewriter } from 'react-simple-typewriter';
-import { FiDownload, FiMessageSquare, FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
-import profileImg from '../assets/profile.jpg';
+import profileImg from '../assets/profile.png';
+import stockImg from '../assets/stock.png';
+import quizImg from '../assets/quiz.png';
+import newsImg from '../assets/news.png';
 
 function Hero() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { 
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+  };
+
+  const stackVariants = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 1, ease: "easeOut" } }
+  };
+
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-16 md:pt-25 md:pb-20">
-
-      {/* Background Ambience */}
-      <div className="absolute top-0 right-0 w-[200px] md:w-[500px] h-[200px] md:h-[500px] bg-cyan-500/10 rounded-full blur-[80px] md:blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[200px] md:w-[500px] h-[200px] md:h-[500px] bg-purple-500/10 rounded-full blur-[80px] md:blur-[120px] pointer-events-none" />
-
-      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center z-10">
-
-        {/* --- LEFT COLUMN: TEXT --- */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="order-2 md:order-1 flex flex-col items-center md:items-start text-center md:text-left"
-        >
-
-          {/* Greeting Pill */}
-          <div className="mb-4 md:mb-6 px-4 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-white/10 text-cyan-600 dark:text-cyan-400 text-xs md:text-sm font-semibold tracking-wide inline-flex items-center gap-2">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
-            </span>
-            Available for New Projects
-          </div>
-
-          <h1 className="text-2xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-4 md:mb-6 leading-tight">
-            I'm <span className="text-5xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-purple-600 dark:from-cyan-400 dark:to-purple-600">Sarthak Bhuptani.</span>
-            <br />
-            I build <span className="text-slate-500 dark:text-slate-500">digital<br className="hidden md:block" /> experiences.</span>
-          </h1>
-
-          <div className="text-lg md:text-2xl text-slate-700 dark:text-slate-300 mb-6 md:mb-8 font-light h-8 md:h-10">
-            <Typewriter
-              words={[
-                'Full Stack MERN Developer',
-                'Scalable React Applications',
-                'Node.js & MongoDB APIs',
-                'Clean UI with Tailwind CSS'
-              ]}
-              loop={0}
-              cursor
-              cursorStyle="_"
-              typeSpeed={70}
-              deleteSpeed={50}
-              delaySpeed={2000}
-            />
-          </div>
-
-          <p className="text-slate-600 dark:text-slate-400 text-base md:text-lg max-w-lg leading-relaxed mb-8 md:mb-10">
-            A computer engineering student passionate about simplifying complex problems with clean, scalable code. I turn ideas into high-performance web applications.
-          </p>
-
-          <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center md:justify-start w-full md:w-auto">
-            <motion.a
-              href="Bhuptani_Sarthak.pdf"
-              target="_blank"
-              download="Sarthak_Bhuptani_Resume.pdf"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-7 py-3.5 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-black font-bold flex items-center justify-center gap-2 hover:bg-slate-800 dark:hover:bg-cyan-50 transition-colors w-full sm:w-auto shadow-xl shadow-cyan-500/10"
+    <section id="hero" className="relative min-h-[85vh] flex items-center pt-20 bg-[#f9f9f9]">
+      <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+          
+          {/* --- LEFT CONTENT --- */}
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="flex-1 text-left order-2 lg:order-1"
+          >
+            {/* Location Badge */}
+            <motion.div 
+              variants={itemVariants}
+              className="inline-flex items-center gap-2 px-3 py-1.5 bg-white shadow-md border border-slate-100 rounded-lg mb-8"
             >
-              <FiDownload /> Download CV
-            </motion.a>
+              <span className="w-2 h-2 rounded-full bg-green-500"></span>
+              <span className="text-[11px] font-bold text-slate-800">Gandhinagar, India</span>
+            </motion.div>
 
-            <div className="flex gap-6 items-center justify-center px-4 mt-2 sm:mt-0">
-              <SocialIcon href="https://github.com/sarthak-bhuptani" icon={<FiGithub />} delay={0} />
-              <SocialIcon href="https://www.linkedin.com/in/sarthak-bhuptani-8a232a247/" icon={<FiLinkedin />} delay={0.1} />
-              <SocialIcon href="#contact" icon={<FiMail />} delay={0.2} />
-            </div>
-          </div>
-        </motion.div>
+            {/* Title */}
+            <motion.h1 
+              variants={itemVariants}
+              className="text-5xl sm:text-7xl font-bold text-[#1a202c] mb-8 leading-[1.1] tracking-tight"
+            >
+              Sarthak Bhuptani<br />
+              Portfolio
+            </motion.h1>
 
-        {/* --- RIGHT COLUMN: IMAGE --- */}
-        {/* On mobile: Hidden. Desktop: Order 2 */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="hidden md:flex order-1 md:order-2 justify-center relative mt-8 md:mt-0"
-        >
-          <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96 lg:w-[420px] lg:h-[420px] rounded-[2rem] overflow-hidden border-2 border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900 group">
-            <img
-              src={profileImg}
-              alt="Sarthak Bhuptani"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
-            />
+            {/* Bio */}
+            <motion.p 
+              variants={itemVariants}
+              className="text-slate-600 text-lg sm:text-xl leading-relaxed max-w-2xl mb-12"
+            >
+              <strong className="text-slate-900 font-bold">MERN stack developer & AI enthusiast.</strong> With <strong className="text-slate-900 font-bold">expertise in high-fidelity apps,</strong> I build scalable web applications using <span className="text-slate-900 font-medium underline decoration-slate-300 underline-offset-4">React, Node.js, and MongoDB.</span> I create REST APIs and high-performance system architectures.
+            </motion.p>
 
-            {/* Overlay Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
-
-            {/* Floating Tag */}
-            <div className="absolute bottom-3 left-3 right-3 md:bottom-6 md:left-6 md:right-6 p-3 md:p-4 bg-white/80 dark:bg-white/10 backdrop-blur-md rounded-xl border border-white/20 dark:border-white/10 shadow-lg">
-              <div className="flex justify-between items-center">
-                <div className="text-left">
-                  <p className="text-[10px] md:text-xs text-slate-500 dark:text-slate-300 uppercase tracking-wider">Located in</p>
-                  <p className="text-slate-900 dark:text-white font-semibold text-sm md:text-base">India 🇮🇳</p>
+            {/* Unique Resume Button */}
+            <motion.div variants={itemVariants}>
+              <a 
+                href="Bhuptani_Sarthak.pdf" 
+                target="_blank"
+                className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#2a9d8f] to-[#264653] text-white rounded-full shadow-2xl hover:scale-105 transition-transform group"
+              >
+                <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-white/50">
+                  <img src={profileImg} alt="S" className="w-full h-full object-cover" />
                 </div>
-                <div className="w-8 h-8 rounded-full bg-cyan-500 flex items-center justify-center text-black">
-                  <FiMessageSquare size={14} />
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+                <span className="font-bold text-sm tracking-wide">See my Resume</span>
+              </a>
+            </motion.div>
+          </motion.div>
 
+          {/* --- RIGHT VISUAL: Overlapping Project Cards --- */}
+          <motion.div 
+            variants={stackVariants}
+            initial="hidden"
+            animate="visible"
+            className="flex-1 relative h-[250px] sm:h-[380px] w-full max-w-[420px] order-1 lg:order-2"
+          >
+            <div className="relative w-full h-full">
+              {/* Bottom Card */}
+              <motion.div 
+                animate={{ rotate: -10, y: 15, x: -15 }}
+                className="absolute inset-0 rounded-2xl overflow-hidden shadow-xl border-4 border-white z-0"
+              >
+                <img src={newsImg} alt="P1" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-black/20"></div>
+              </motion.div>
+
+              {/* Middle Card */}
+              <motion.div 
+                animate={{ rotate: -5, y: 8, x: -8 }}
+                className="absolute inset-0 rounded-2xl overflow-hidden shadow-xl border-4 border-white z-10"
+              >
+                <img src={quizImg} alt="P2" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-black/10"></div>
+              </motion.div>
+
+              {/* Top Main Card */}
+              <motion.div 
+                animate={{ rotate: 5 }}
+                whileHover={{ rotate: 0, scale: 1.02 }}
+                className="absolute inset-0 rounded-2xl overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.15)] border-4 border-white z-20"
+              >
+                <img src={stockImg} alt="P3" className="w-full h-full object-cover" />
+              </motion.div>
+
+              {/* Depth Decor (Optional) */}
+              <div className="absolute -bottom-10 -right-10 w-24 h-24 bg-blue-500/10 blur-3xl rounded-full"></div>
+            </div>
+          </motion.div>
+
+        </div>
       </div>
-
-      {/* Scroll indicator - Hidden on mobile to save space */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 opacity-50"
-      >
-        <div className="w-[1px] h-12 bg-gradient-to-b from-transparent via-slate-400 to-transparent"></div>
-      </motion.div>
     </section>
   );
 }
-
-const SocialIcon = ({ href, icon, delay }) => (
-  <motion.a
-    href={href}
-    target="_blank"
-    rel="noreferrer"
-    initial={{ opacity: 0, y: 10 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ delay: 0.5 + delay }}
-    whileHover={{ y: -3, color: "#22d3ee" }}
-    className="text-2xl text-slate-500 dark:text-slate-400 transition-colors"
-  >
-    {icon}
-  </motion.a>
-);
 
 export default Hero;

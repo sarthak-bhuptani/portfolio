@@ -1,211 +1,90 @@
-// src/components/Contact.js
-import React, { useState, useRef } from "react";
-import { Mail, MapPin, Send, Loader2, CheckCircle, Github, Linkedin, Smartphone, Copy } from "lucide-react";
+import React from "react";
+import { motion } from 'framer-motion';
+import profileImg from '../assets/profile.jpg';
+import { FiMail, FiLinkedin, FiGithub } from 'react-icons/fi';
 
 export default function Contact() {
   const EMAIL = "mrsarthak825@gmail.com";
-  const PHONE = "+917436059291"; // Remove spaces for API
-  const DISPLAY_PHONE = "+91 74360 59291";
-
-  const formRef = useRef();
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [copied, setCopied] = useState(null);
-
-  const handleSendWhatsApp = (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    const formData = new FormData(formRef.current);
-    const name = formData.get('user_name');
-    const email = formData.get('user_email');
-    const subject = formData.get('subject') || "Portfolio Inquiry";
-    const message = formData.get('message');
-
-    // Construct WhatsApp Message
-    const text = `*New Portfolio Inquiry* 🚀\n\n*Name:* ${name}\n*Email:* ${email}\n*Subject:* ${subject}\n\n*Message:* ${message}`;
-
-    const encodeText = encodeURIComponent(text);
-    const waUrl = `https://wa.me/${PHONE}?text=${encodeText}`;
-
-    // Simulate loading for better UX
-    setTimeout(() => {
-      window.open(waUrl, '_blank');
-      setLoading(false);
-      setSuccess(true);
-      e.target.reset();
-      setTimeout(() => setSuccess(false), 5000);
-    }, 1500);
-  };
-
-  const copyToClipboard = (text, type) => {
-    navigator.clipboard.writeText(text);
-    setCopied(type);
-    setTimeout(() => setCopied(null), 2000);
-  };
 
   return (
-    <section id="contact" className="relative py-24 bg-transparent flex items-center justify-center">
+    <section id="contact" className="relative py-24 sm:py-32 bg-[#f8f8f8] flex items-center justify-center px-4 sm:px-6">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 30 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="max-w-4xl w-full bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-8 sm:p-16 flex flex-col items-center text-center relative overflow-hidden"
+      >
 
-      <div className="max-w-5xl w-full px-6">
+        {/* Subtle top decoration if needed */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-slate-50 rounded-full blur-3xl -translate-y-1/2 pointer-events-none"></div>
 
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">Get In Touch</h2>
-          <p className="text-slate-600 dark:text-slate-400">Send me a message directly on WhatsApp!</p>
-        </div>
-
-        {/* Main Split Card */}
-        <div className="flex flex-col md:flex-row bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-3xl overflow-hidden shadow-2xl">
-
-          {/* LEFT SIDE: Contact Info (Darker) */}
-          <div className="md:w-5/12 bg-slate-100 dark:bg-slate-800 p-8 md:p-12 flex flex-col justify-between relative overflow-hidden">
-            {/* Decoration */}
-            <div className="absolute top-0 right-0 w-40 h-40 bg-green-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-
-            <div>
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Contact Information</h3>
-              <p className="text-slate-600 dark:text-slate-400 mb-8 text-sm leading-relaxed">
-                I'm open for freelance opportunities and full-time roles. Feel free to reach out via WhatsApp or Email.
-              </p>
-
-              <div className="space-y-6">
-                {/* Email */}
-                <div className="flex items-start gap-4 group">
-                  <div className="p-3 bg-slate-700/50 rounded-lg text-cyan-400 group-hover:bg-cyan-500 group-hover:text-white transition-colors">
-                    <Mail size={20} />
-                  </div>
-                  <div>
-                    <p className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-1">Email</p>
-                    <div className="flex items-center gap-2">
-                      <a href={`mailto:${EMAIL}`} className="text-slate-900 dark:text-white font-medium hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors text-sm break-all">{EMAIL}</a>
-                      <button onClick={() => copyToClipboard(EMAIL, 'email')} className="text-slate-500 hover:text-slate-900 dark:hover:text-white">
-                        {copied === 'email' ? <CheckCircle size={14} className="text-green-500" /> : <Copy size={16} />}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Phone */}
-                <div className="flex items-start gap-4 group">
-                  <div className="p-3 bg-slate-700/50 rounded-lg text-green-400 group-hover:bg-green-500 group-hover:text-white transition-colors">
-                    <Smartphone size={20} />
-                  </div>
-                  <div>
-                    <p className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-1">WhatsApp / Phone</p>
-                    <div className="flex items-center gap-2">
-                      <a href={`tel:${DISPLAY_PHONE}`} className="text-slate-900 dark:text-white font-medium hover:text-green-600 dark:hover:text-green-400 transition-colors">{DISPLAY_PHONE}</a>
-                      <button onClick={() => copyToClipboard(DISPLAY_PHONE, 'phone')} className="text-slate-500 hover:text-slate-900 dark:hover:text-white">
-                        {copied === 'phone' ? <CheckCircle size={14} className="text-green-500" /> : <Copy size={16} />}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Location */}
-                <div className="flex items-start gap-4 group">
-                  <div className="p-3 bg-slate-700/50 rounded-lg text-purple-400 group-hover:bg-purple-500 group-hover:text-white transition-colors">
-                    <MapPin size={20} />
-                  </div>
-                  <div>
-                    <p className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-1">Location</p>
-                    <p className="text-slate-900 dark:text-white font-medium">Ahmedabad, Gujarat</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-12">
-              <p className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-4">Follow Me</p>
-              <div className="flex gap-4">
-                <a href="https://github.com" target="_blank" rel="noreferrer" className="p-3 bg-slate-200 dark:bg-slate-700/50 rounded-lg text-slate-700 dark:text-white hover:bg-slate-900 dark:hover:bg-white hover:text-white dark:hover:text-slate-900 transition-colors">
-                  <Github size={20} />
-                </a>
-                <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-3 bg-slate-200 dark:bg-slate-700/50 rounded-lg text-slate-700 dark:text-white hover:bg-[#0077b5] hover:text-white transition-colors">
-                  <Linkedin size={20} />
-                </a>
-              </div>
-            </div>
+        {/* Profile Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="inline-flex items-center gap-3 mb-8 bg-slate-50 pr-4 rounded-full border border-slate-100 p-1"
+        >
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden">
+            <img src={profileImg} alt="Sarthak" className="w-full h-full object-cover" />
           </div>
-
-          {/* RIGHT SIDE: Form (Lighter) */}
-          <div className="md:w-7/12 bg-slate-50 dark:bg-slate-900/50 p-8 md:p-12 relative">
-            {success ? (
-              <div className="h-full flex flex-col items-center justify-center text-center">
-                <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mb-4 icon-pulse">
-                  <CheckCircle size={32} className="text-green-500" />
-                </div>
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Redirected to WhatsApp!</h3>
-                <p className="text-slate-600 dark:text-slate-400 mb-6">You can now hit send in your WhatsApp app.</p>
-                <button onClick={() => setSuccess(false)} className="text-sm text-green-400 hover:text-green-300 font-bold">Write Another</button>
-              </div>
-            ) : (
-              <form ref={formRef} onSubmit={handleSendWhatsApp} className="space-y-6">
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Name</label>
-                    <input
-                      type="text"
-                      name="user_name"
-                      required
-                      className="w-full bg-slate-200 dark:bg-slate-950 border border-slate-300 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all placeholder:text-slate-500 dark:placeholder:text-slate-600"
-                      placeholder="John Doe"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Email</label>
-                    <input
-                      type="email"
-                      name="user_email"
-                      required
-                      className="w-full bg-slate-200 dark:bg-slate-950 border border-slate-300 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all placeholder:text-slate-500 dark:placeholder:text-slate-600"
-                      placeholder="john@example.com"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Subject</label>
-                  <input
-                    type="text"
-                    name="subject"
-                    className="w-full bg-slate-200 dark:bg-slate-950 border border-slate-300 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all placeholder:text-slate-500 dark:placeholder:text-slate-600"
-                    placeholder="Project Proposal"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Message</label>
-                  <textarea
-                    name="message"
-                    required
-                    rows="4"
-                    className="w-full bg-slate-200 dark:bg-slate-950 border border-slate-300 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all placeholder:text-slate-500 dark:placeholder:text-slate-600 resize-none"
-                    placeholder="Tell me about your project..."
-                  ></textarea>
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full py-4 bg-[#25D366] text-white rounded-xl font-bold hover:bg-[#128C7E] transition-all flex items-center justify-center gap-2 group shadow-lg hover:shadow-green-500/20"
-                >
-                  {loading ? <Loader2 className="animate-spin" /> : <>Send via WhatsApp <Send size={18} className="group-hover:translate-x-1 transition-transform" /></>}
-                </button>
-              </form>
-            )}
+          <div className="text-left">
+            <p className="text-xs sm:text-sm font-semibold text-slate-800 leading-tight">Sarthak Bhuptani</p>
+            <p className="text-[10px] sm:text-xs text-slate-500 font-medium">MERN Stack Developer</p>
           </div>
+        </motion.div>
 
-        </div>
+        {/* Heading */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-2xl sm:text-4xl md:text-5xl font-medium text-[#111827] mb-6 leading-tight max-w-2xl px-2 sm:px-0"
+        >
+          Have an idea or need something built?<br />
+          <span className="text-[#64748b]">Let's work together.</span>
+        </motion.h2>
 
-        {/* Minimal Footer */}
-        <div className="mt-16 text-center border-t border-slate-200 dark:border-white/5 pt-8">
-          <p className="text-slate-500 text-sm">&copy; {new Date().getFullYear()} Sarthak Bhuptani. All rights reserved.</p>
-        </div>
+        {/* Description */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="text-slate-600 text-base sm:text-lg md:text-xl font-light mb-10 sm:mb-12 max-w-2xl px-2 sm:px-0"
+        >
+          I build fast, scalable web apps and functional systems with React, Node.js, and MongoDB. Currently available for work and open to teams that value performance, reliability, and clean code.
+        </motion.p>
 
+        {/* Action Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto"
+        >
+          <a href={`mailto:${EMAIL}`} className="flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 bg-[#111827] text-white rounded-full font-medium shadow-lg hover:bg-black transition-all hover:-translate-y-0.5">
+            <FiMail size={18} />
+            Email me
+          </a>
 
+          <div className="flex gap-3 w-full sm:w-auto justify-center">
+            <a href="https://www.linkedin.com/in/sarthak-bhuptani-8a232a247/" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 flex-1 sm:flex-none px-6 py-3.5 bg-white text-slate-700 border border-slate-200 rounded-full font-medium shadow-sm hover:border-slate-300 hover:bg-slate-50 transition-all hover:-translate-y-0.5">
+              <FiLinkedin size={18} />
+              <span className="hidden sm:inline">LinkedIn</span>
+            </a>
 
-      </div>
+            <a href="https://github.com/sarthak-bhuptani" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 flex-1 sm:flex-none px-6 py-3.5 bg-white text-slate-700 border border-slate-200 rounded-full font-medium shadow-sm hover:border-slate-300 hover:bg-slate-50 transition-all hover:-translate-y-0.5">
+              <FiGithub size={18} />
+              <span className="hidden sm:inline">GitHub</span>
+            </a>
+          </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

@@ -1,115 +1,45 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, Mail, Heart, ChevronUp } from 'lucide-react';
+import React from "react";
+import { FiArrowUp } from 'react-icons/fi';
 
 const Footer = () => {
-    const currentYear = new Date().getFullYear();
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
-    const socialLinks = [
-        { icon: Github, href: "https://github.com/sarthak-bhuptani", label: "GitHub" },
-        { icon: Linkedin, href: "https://linkedin.com/in/sarthak-bhuptani", label: "LinkedIn" },
-        { icon: Twitter, href: "https://x.com/Sarthak00125445", label: "Twitter" },
-        { icon: Mail, href: "mailto:mrsarthak825@gmail.com", label: "Email" },
-    ];
+  return (
+    <footer className="bg-[#f8f8f8] py-16 px-6 border-t border-slate-100">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10 sm:gap-6">
 
-    const quickLinks = [
-        { name: "Home", href: "#home" },
-        { name: "About", href: "#about" },
-        { name: "Projects", href: "#projects" },
-        { name: "Contact", href: "#contact" },
-    ];
+        {/* Branding & Status */}
+        <div className="flex flex-col items-center md:items-start text-center md:text-left">
+          <span className="text-lg font-bold text-[#111827] mb-1">Sarthak Bhuptani</span>
+          <p className="text-xs uppercase tracking-widest text-slate-400 font-bold">MERN Stack Developer — 2026</p>
+        </div>
 
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
+        {/* Minimal Social Links */}
+        <div className="flex items-center gap-8 text-xs font-bold uppercase tracking-[0.1em]">
+          <a href="https://github.com/sarthak-bhuptani" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-black transition-colors">GitHub</a>
+          <a href="https://www.linkedin.com/in/sarthak-bhuptani-8a232a247/" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-black transition-colors">LinkedIn</a>
+          <a href="mailto:mrsarthak825@gmail.com" className="text-slate-400 hover:text-black transition-colors">Email</a>
+        </div>
 
-    return (
-        <footer className="relative pt-20 pb-10 border-t border-slate-200 dark:border-slate-800/50 bg-slate-50/50 dark:bg-slate-950/50 backdrop-blur-sm z-10 transition-colors duration-500">
-            <div className="container mx-auto px-6 md:px-12">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+        {/* Back to Top */}
+        <button
+          onClick={scrollToTop}
+          className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-[#111827] hover:bg-black hover:text-white transition-all group"
+          title="Back to top"
+        >
+          <FiArrowUp size={20} className="group-hover:-translate-y-1 transition-transform" />
+        </button>
 
-                    {/* Brand Column */}
-                    <div className="col-span-1 md:col-span-2 space-y-4">
-                        <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-500">
-                            Sarthak Bhuptani
-                        </h2>
-                        <p className="text-slate-600 dark:text-slate-400 max-w-sm leading-relaxed">
-                            Crafting immersive digital experiences with code and creativity.
-                            Let's build something extraordinary together.
-                        </p>
-                        <div className="flex items-center gap-2 pt-2">
-                            <span className="relative flex h-3 w-3">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                            </span>
-                            <span className="text-sm font-medium text-slate-500 dark:text-slate-400">
-                                Open to work
-                            </span>
-                        </div>
-                    </div>
+      </div>
 
-                    {/* Quick Links */}
-                    <div className="space-y-4">
-                        <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200">Navigation</h3>
-                        <ul className="space-y-2">
-                            {quickLinks.map((link) => (
-                                <li key={link.name}>
-                                    <a
-                                        href={link.href}
-                                        className="text-slate-600 dark:text-slate-400 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2 group"
-                                    >
-                                        <span className="w-0 group-hover:w-2 h-[1px] bg-cyan-500 transition-all duration-300"></span>
-                                        {link.name}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Social Links */}
-                    <div className="space-y-4">
-                        <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200">Connect</h3>
-                        <div className="flex gap-4">
-                            {socialLinks.map((social) => (
-                                <motion.a
-                                    key={social.label}
-                                    href={social.href}
-                                    target={social.href.startsWith('mailto') ? undefined : "_blank"}
-                                    rel="noopener noreferrer"
-                                    whileHover={{ y: -5 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="p-3 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-cyan-500 hover:text-white dark:hover:bg-cyan-500 dark:hover:text-white transition-all duration-300 shadow-sm"
-                                    aria-label={social.label}
-                                >
-                                    <social.icon size={20} />
-                                </motion.a>
-                            ))}
-                        </div>
-                        <p className="text-sm text-slate-500 dark:text-slate-500 pt-2">
-                            Based in India 🇮🇳
-                        </p>
-                    </div>
-                </div>
-
-                {/* Bottom Bar */}
-                <div className="pt-8 border-t border-slate-200 dark:border-slate-800/50 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-sm text-slate-500 dark:text-slate-500 flex items-center gap-1">
-                        © {currentYear} Sarthak Bhuptani. All rights reserved.
-                    </p>
-
-                    <button
-                        onClick={scrollToTop}
-                        className="group flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors"
-                    >
-                        Back to Top
-                        <span className="p-2 rounded-full bg-slate-200 dark:bg-slate-800 group-hover:bg-cyan-500 group-hover:text-white transition-all duration-300">
-                            <ChevronUp size={16} />
-                        </span>
-                    </button>
-                </div>
-            </div>
-        </footer>
-    );
+      {/* Very Bottom Credit */}
+      <div className="max-w-6xl mx-auto mt-12 pt-8 border-t border-slate-100 flex justify-center text-[10px] text-slate-300 uppercase tracking-widest font-bold">
+        Designed & Built by Sarthak Bhuptani
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;
